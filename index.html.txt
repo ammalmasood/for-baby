@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: #111111;
+      color: #f1f1f1;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(145deg, #1a1a1a, #222);
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    .love-letter {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      font-size: 1.2em;
+    }
+    .generator-button {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .generator-button:hover {
+      background: #555;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #444;
+    }
+    .drift {
+      text-align: center;
+      margin: 60px 0;
+    }
+    .drift img {
+      width: 300px;
+      animation: drift 3s infinite ease-in-out;
+    }
+    @keyframes drift {
+      0% { transform: translateX(0) rotate(0deg); }
+      50% { transform: translateX(40px) rotate(8deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+    .spotify {
+      text-align: center;
+      margin: 60px 0;
+    }
+    .hotwheels {
+      text-align: center;
+      margin: 50px 0;
+      position: relative;
+    }
+    .hotwheels img.bouquet-pop {
+      width: 200px;
+      opacity: 0;
+      transform: scale(0.2);
+      animation: popIn 1.2s ease-out forwards;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.2); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>For My Baby</h1>
+    <p>A little place just for you</p>
+  </header>
+
+  <section class="love-letter">
+    <p id="letterText">Hi baby, I know you've been working hard these past days so here's a gift for you. Don't be too hard on yourself and remember you always have me by your side, no matter what happens.</p>
+    <button class="generator-button" onclick="generateLetter()">Generate Love Letter</button>
+    <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_70b8ffbf92.mp3?filename=magic-transition-6973.mp3"></audio>
+  </section>
+
+  <section class="gallery">
+    <img src="https://i.ibb.co/zRwm8Tx/whatsapp1.jpg" alt="Us 1">
+    <img src="https://i.ibb.co/9ZL2v5x/ham.jpg" alt="Us 2">
+    <img src="https://i.ibb.co/h8gKmw3/hotwheels-bouquet.png" alt="Hot Wheels Bouquet">
+  </section>
+
+  <section class="drift">
+    <img src="https://pngimg.com/uploads/mercedes/mercedes_PNG80100.png" alt="Drifting C63 AMG">
+  </section>
+
+  <section class="spotify">
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5Kt4VQMwzCruHvLeQQ48Xr?utm_source=generator" width="90%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </section>
+
+  <section class="hotwheels">
+    <h2>Hot Wheels for My Hot Guy</h2>
+    <img class="bouquet-pop" id="bouquetSpring" src="https://i.ibb.co/h8gKmw3/hotwheels-bouquet.png" alt="Hot Wheels Surprise">
+  </section>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/29/audio_ef7a73a5dc.mp3?filename=kiss-14448.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function generateLetter() {
+      const letters = [
+        "Hi baby, just a reminder that no matter what you’re going through, I’m always by your side.",
+        "Hey love, I hope this little corner of the web makes you smile today.",
+        "You’ve been strong for so long — let this be a soft place for you to land.",
+        "Whenever you're tired, remember this space is just for you. I'm always rooting for you.",
+        "To my mafia king — power, love, and loyalty. Forever yours."
+      ];
+      const letterText = document.getElementById("letterText");
+      const clickSound = document.getElementById("clickSound");
+      if (letterText && clickSound) {
+        const random = letters[Math.floor(Math.random() * letters.length)];
+        letterText.innerText = random;
+        clickSound.play();
+      }
+    }
+
+    window.onload = function() {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff0000', '#ffffff', '#00bfff']
+      });
+
+      const bouquet = document.getElementById("bouquetSpring");
+      bouquet.style.opacity = 0;
+      bouquet.style.transform = "scale(0.2) translateY(100px)";
+      bouquet.style.transition = "all 1.5s ease-out";
+
+      setTimeout(() => {
+        bouquet.style.opacity = 1;
+        bouquet.style.transform = "scale(1) translateY(0) rotate(-5deg)";
+      }, 600);
+    };
+  </script>
+</body>
+</html>
